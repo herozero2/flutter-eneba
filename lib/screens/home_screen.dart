@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:eneba_ecommerce/models/product.dart';
+import 'package:eneba_ecommerce/models/category.dart';
 import 'package:eneba_ecommerce/widgets/product_card.dart';
 import 'package:eneba_ecommerce/widgets/category_card.dart';
 import 'package:eneba_ecommerce/services/auth_service.dart';
@@ -29,8 +30,6 @@ class _HomeScreenState extends State<HomeScreen> {
       imageUrl: '',
       category: 'games',
       platforms: ['PC', 'PS5', 'XBOX'],
-      rating: 4.8,
-      reviews: 1250,
     ),
     Product(
       id: '2',
@@ -41,20 +40,16 @@ class _HomeScreenState extends State<HomeScreen> {
       imageUrl: '',
       category: 'topups',
       platforms: ['PC', 'PS5', 'XBOX'],
-      rating: 4.7,
-      reviews: 890,
     ),
     Product(
       id: '3',
-      title: 'Steam Wallet Code - $50',
+      title: 'Steam Wallet Code - \$50',
       description: 'Digital gift card for Steam platform',
       price: 45.99,
       originalPrice: 50.00,
       imageUrl: '',
       category: 'giftcards',
       platforms: ['PC'],
-      rating: 4.9,
-      reviews: 2100,
     ),
     Product(
       id: '4',
@@ -65,8 +60,6 @@ class _HomeScreenState extends State<HomeScreen> {
       imageUrl: '',
       category: 'topups',
       platforms: ['PC'],
-      rating: 4.6,
-      reviews: 750,
     ),
   ];
 
@@ -332,18 +325,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-}
-
-class Category {
-  final String id;
-  final String name;
-  final String icon;
-  final int productCount;
-
-  Category({
-    required this.id,
-    required this.name,
-    required this.icon,
-    required this.productCount,
-  });
 }
