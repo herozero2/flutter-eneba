@@ -33,16 +33,50 @@ lib/
     └── category_card.dart   # Reusable category card widget
 ```
 
+## 🚨 Important: Platform Setup Required
+
+The project structure is complete but you need to regenerate platform files to run on specific devices.
+
+### Quick Fix for "No supported devices connected" Error
+
+Run this command in your project directory:
+
+```bash
+# Remove existing platform directories
+rm -rf android windows linux macos
+
+# Regenerate platform files
+flutter create --platforms=android,windows,linux,macos,web .
+```
+
+Or use the provided script:
+```bash
+chmod +x regenerate_platforms.sh
+./regenerate_platforms.sh
+```
+
+### After Regeneration
+
+You can now run on any platform:
+```bash
+flutter run -d chrome    # Web
+flutter run -d windows   # Windows  
+flutter run -d android   # Android
+flutter run -d linux     # Linux
+flutter run -d macos     # macOS
+```
+
 ## Getting Started
 
 ### Prerequisites
-- Flutter SDK (version 3.0.0 or higher)
+- Flutter SDK (version 3.10.0 or higher)
 - Dart SDK (version 3.0.0 or higher)
 
 ### Installation
 1. Clone this repository
 2. Run `flutter pub get` to install dependencies
-3. Run `flutter run` to start the app
+3. Run the platform regeneration commands above
+4. Run `flutter run` to start the app
 
 ### Dependencies
 - `provider: ^6.1.1` - State management
