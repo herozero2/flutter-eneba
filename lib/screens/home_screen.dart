@@ -1,6 +1,4 @@
 
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,97 +18,62 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
+
   final List<Product> _featuredProducts = [
     Product(
       id: '1',
-      title: 'Cyberpunk 2077',
-      description: 'Open-world RPG adventure in Night City',
-      price: 29.99,
-      originalPrice: 59.99,
+      title: 'Call of Duty: Modern Warfare III',
+      description: 'Latest installment in the COD franchise',
+      price: 69.99,
+      originalPrice: 79.99,
       imageUrl: '',
-      category: 'PC Games',
-      discount: 50,
-      isFeatured: true,
-      platforms: ['PC', 'PS5', 'Xbox'],
-      type: ProductType.game,
+      category: 'games',
+      platforms: ['PC', 'PS5', 'XBOX'],
+      rating: 4.8,
+      reviews: 1250,
     ),
     Product(
       id: '2',
-      title: 'Elden Ring',
-      description: 'Action RPG masterpiece from FromSoftware',
-      price: 39.99,
-      originalPrice: 59.99,
-      imageUrl: '',
-      category: 'PC Games',
-      discount: 33,
-      isFeatured: true,
-      platforms: ['PC', 'PS5', 'Xbox'],
-      type: ProductType.game,
-    ),
-    Product(
-      id: '3',
-      title: '1000 Coins',
-      description: 'Instant delivery to your account',
-      price: 9.99,
-      originalPrice: 12.99,
-      imageUrl: '',
-      category: 'Top Up',
-      discount: 23,
-      isFeatured: true,
-      platforms: ['Mobile'],
-      type: ProductType.topup,
-      gameName: 'PUBG Mobile',
-      amount: 1000,
-    ),
-    Product(
-      id: '4',
-      title: 'Steam Wallet Code',
-      description: 'Redeem instantly on Steam platform',
-      price: 49.99,
-      originalPrice: 49.99,
-      imageUrl: '',
-      category: 'Gift Cards',
-      discount: 0,
-      isFeatured: true,
-      platforms: ['PC'],
-      type: ProductType.giftcard,
-      amount: 50,
-    ),
-    Product(
-      id: '5',
-      title: '2400 Valorant Points',
-      description: 'Get premium skins and battle pass',
+      title: 'EA FC 24 Points - 2200',
+      description: 'In-game currency for EA FC 24',
       price: 19.99,
       originalPrice: 24.99,
       imageUrl: '',
-      category: 'Top Up',
-      discount: 20,
-      isFeatured: true,
-      platforms: ['PC'],
-      type: ProductType.topup,
-      gameName: 'Valorant',
-      amount: 2400,
+      category: 'topups',
+      platforms: ['PC', 'PS5', 'XBOX'],
+      rating: 4.7,
+      reviews: 890,
     ),
     Product(
-      id: '6',
-      title: 'PlayStation Network Card',
-      description: 'Buy games, DLCs and subscriptions',
-      price: 24.99,
-      originalPrice: 24.99,
+      id: '3',
+      title: 'Steam Wallet Code - $50',
+      description: 'Digital gift card for Steam platform',
+      price: 45.99,
+      originalPrice: 50.00,
       imageUrl: '',
-      category: 'Gift Cards',
-      discount: 0,
-      isFeatured: true,
-      platforms: ['PS5', 'PS4'],
-      type: ProductType.giftcard,
-      amount: 25,
+      category: 'giftcards',
+      platforms: ['PC'],
+      rating: 4.9,
+      reviews: 2100,
+    ),
+    Product(
+      id: '4',
+      title: 'Valorant Points - 1000',
+      description: 'Premium currency for Valorant',
+      price: 9.99,
+      originalPrice: 12.99,
+      imageUrl: '',
+      category: 'topups',
+      platforms: ['PC'],
+      rating: 4.6,
+      reviews: 750,
     ),
   ];
 
   final List<Category> _categories = [
-    Category(id: '1', name: 'PC Games', icon: '🎮', productCount: 245),
-    Category(id: '2', name: 'PlayStation', icon: '🎯', productCount: 189),
-    Category(id: '3', name: 'Xbox', icon: '🎲', productCount: 167),
+    Category(id: '1', name: 'PC Games', icon: '💻', productCount: 245),
+    Category(id: '2', name: 'PlayStation', icon: '🎮', productCount: 189),
+    Category(id: '3', name: 'Xbox', icon: '🎯', productCount: 167),
     Category(id: '4', name: 'Nintendo', icon: '🎪', productCount: 134),
     Category(id: '5', name: 'Gift Cards', icon: '🎁', productCount: 89),
     Category(id: '6', name: 'Top Up', icon: '⚡', productCount: 76),
@@ -200,212 +163,187 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            // Hero Section
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                color: CupertinoColors.systemPurple,
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(16),
-                  bottomRight: Radius.circular(16),
+              // Hero Section
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  color: CupertinoColors.systemPurple,
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(16),
+                    bottomRight: Radius.circular(16),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: CupertinoColors.white.withOpacity(0.2),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: const Icon(
+                            CupertinoIcons.game_controller,
+                            color: CupertinoColors.white,
+                            size: 24,
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'GameTopUp',
+                                style: CupertinoTheme.of(context).textTheme.navLargeTitleTextStyle.copyWith(
+                                      color: CupertinoColors.white,
+                                      fontSize: 24,
+                                    ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                'Games, Top Ups & Gift Cards',
+                                style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
+                                      color: CupertinoColors.white.withOpacity(0.9),
+                                      fontSize: 14,
+                                    ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    Text(
+                      'Instant Delivery • Best Prices • 24/7 Support',
+                      style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
+                            color: CupertinoColors.white.withOpacity(0.9),
+                            fontSize: 13,
+                          ),
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      children: [
+                        CupertinoButton.filled(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 10,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                          onPressed: () {},
+                          child: const Text(
+                            'Browse Games',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        CupertinoButton(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 20,
+                            vertical: 10,
+                          ),
+                          borderRadius: BorderRadius.circular(8),
+                          color: CupertinoColors.white.withOpacity(0.2),
+                          onPressed: () {},
+                          child: const Text(
+                            'Top Ups',
+                            style: TextStyle(
+                              color: CupertinoColors.white,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        width: 50,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: CupertinoColors.white.withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: const Icon(
-                          CupertinoIcons.game_controller,
-                          color: CupertinoColors.white,
-                          size: 24,
-                        ),
-                      ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'GameTopUp',
-                              style: CupertinoTheme.of(context).textTheme.navLargeTitleTextStyle.copyWith(
-                                    color: CupertinoColors.white,
-                                    fontSize: 24,
-                                  ),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              'Games, Top Ups & Gift Cards',
-                              style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
-                                    color: CupertinoColors.white.withOpacity(0.9),
-                                    fontSize: 14,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Instant Delivery • Best Prices • 24/7 Support',
-                    style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
-                          color: CupertinoColors.white.withOpacity(0.9),
-                          fontSize: 13,
-                        ),
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      CupertinoButton.filled(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 10,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                        onPressed: () {},
-                        child: const Text(
-                          'Browse Games',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      CupertinoButton(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 10,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                        color: CupertinoColors.white.withOpacity(0.2),
-                        onPressed: () {},
-                        child: const Text(
-                          'Top Ups',
-                          style: TextStyle(
-                            color: CupertinoColors.white,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
 
-            // Categories Section
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Popular Categories',
-                    style: CupertinoTheme.of(context).textTheme.navLargeTitleTextStyle.copyWith(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        ),
-                  ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    height: 100,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: _categories.length,
+              // Categories Section
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Popular Categories',
+                      style: CupertinoTheme.of(context).textTheme.navLargeTitleTextStyle.copyWith(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      height: 100,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: _categories.length,
+                        itemBuilder: (context, index) {
+                          return CategoryCard(category: _categories[index]);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              // Featured Products Section
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Featured Products',
+                      style: CupertinoTheme.of(context).textTheme.navLargeTitleTextStyle.copyWith(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
+                    const SizedBox(height: 16),
+                    GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 12,
+                        mainAxisSpacing: 12,
+                        childAspectRatio: 0.7,
+                      ),
+                      itemCount: _featuredProducts.length,
                       itemBuilder: (context, index) {
-                        return CategoryCard(category: _categories[index]);
+                        return ProductCard(product: _featuredProducts[index]);
                       },
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-
-            // Featured Products Section
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Featured Products',
-                    style: CupertinoTheme.of(context).textTheme.navLargeTitleTextStyle.copyWith(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        ),
-                  ),
-                  const SizedBox(height: 16),
-                  GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 12,
-                      mainAxisSpacing: 12,
-                      childAspectRatio: 0.7,
-                    ),
-                    itemCount: _featuredProducts.length,
-                    itemBuilder: (context, index) {
-                      return ProductCard(product: _featuredProducts[index]);
-                    },
-                  ),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class ProductSearchDelegate extends SearchDelegate {
-  @override
-  List<Widget> buildActions(BuildContext context) {
-    return [
-      IconButton(
-        icon: const Icon(Icons.clear),
-        onPressed: () {
-          query = '';
-        },
-      ),
-    ];
-  }
+class Category {
+  final String id;
+  final String name;
+  final String icon;
+  final int productCount;
 
-  @override
-  Widget buildLeading(BuildContext context) {
-    return IconButton(
-      icon: const Icon(Icons.arrow_back),
-      onPressed: () {
-        close(context, null);
-      },
-    );
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    return Center(
-      child: Text('Search results for: $query'),
-    );
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    return const Center(
-      child: Text('Start typing to search for games...'),
-    );
-  }
+  Category({
+    required this.id,
+    required this.name,
+    required this.icon,
+    required this.productCount,
+  });
 }
-
-
