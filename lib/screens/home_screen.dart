@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:eneba_ecommerce/models/product.dart';
 import 'package:eneba_ecommerce/widgets/product_card.dart';
 import 'package:eneba_ecommerce/widgets/category_card.dart';
-import 'package:eneba_ecommerce/widgets/search_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
