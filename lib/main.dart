@@ -1,5 +1,6 @@
 
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:eneba_ecommerce/screens/home_screen.dart';
@@ -20,23 +21,13 @@ class EnebaEcommerceApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => AuthService()),
         ChangeNotifierProvider(create: (context) => CartService()),
       ],
-      child: MaterialApp(
+      child: CupertinoApp(
         title: 'GameTopUp',
-        theme: ThemeData(
-          primarySwatch: Colors.deepPurple,
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.deepPurple,
-            primary: Colors.deepPurple,
-            secondary: Colors.purple,
-          ),
-          useMaterial3: true,
-          fontFamily: 'Roboto',
-          appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.white,
-            foregroundColor: Colors.black87,
-            elevation: 1,
-            centerTitle: false,
-          ),
+        theme: const CupertinoThemeData(
+          brightness: Brightness.light,
+          primaryColor: CupertinoColors.systemPurple,
+          barBackgroundColor: CupertinoColors.systemBackground,
+          scaffoldBackgroundColor: CupertinoColors.systemBackground,
         ),
         home: const HomeScreen(),
         debugShowCheckedModeBanner: false,

@@ -1,6 +1,7 @@
 
 
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:eneba_ecommerce/models/product.dart';
@@ -117,85 +118,97 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        middle: const Text(
           'GameTopUp',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            color: Colors.deepPurple,
-            fontSize: 20,
+            fontSize: 18,
           ),
         ),
-        backgroundColor: Colors.white,
-        elevation: 1,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            color: Colors.deepPurple,
-            onPressed: () {
-              showSearch(
-                context: context,
-                delegate: ProductSearchDelegate(),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.shopping_cart_outlined),
-            color: Colors.deepPurple,
-            onPressed: () {
-              // Navigate to cart
-            },
-          ),
-          Consumer<AuthService>(
-            builder: (context, authService, child) {
-              return IconButton(
-                icon: Icon(
-                  authService.isLoggedIn ? Icons.person : Icons.login,
-                  color: Colors.deepPurple,
-                ),
-                onPressed: () {
-                  if (authService.isLoggedIn) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ProfileScreen(),
-                      ),
-                    );
-                  } else {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginScreen(),
-                      ),
-                    );
-                  }
-                },
-              );
-            },
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
+            CupertinoButton(
+              padding: EdgeInsets.zero,
+              onPressed: () {
+                showCupertinoModalPopup(
+                  context: context,
+                  builder: (context) => CupertinoActionSheet(
+                    title: const Text('Search Products'),
+                    message: const Text('Search functionality coming soon'),
+                    actions: [
+                      CupertinoActionSheetAction(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('OK'),
+                      ),
+                    ],
+                    cancelButton: CupertinoActionSheetAction(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Cancel'),
+                    ),
+                  ),
+                );
+              },
+              child: const Icon(CupertinoIcons.search, size: 22),
+            ),
+            CupertinoButton(
+              padding: EdgeInsets.zero,
+              onPressed: () {
+                // Navigate to cart
+              },
+              child: const Icon(CupertinoIcons.cart, size: 22),
+            ),
+            Consumer<AuthService>(
+              builder: (context, authService, child) {
+                return CupertinoButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () {
+                    if (authService.isLoggedIn) {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => const ProfileScreen(),
+                        ),
+                      );
+                    } else {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                      );
+                    }
+                  },
+                  child: Icon(
+                    authService.isLoggedIn ? CupertinoIcons.person : CupertinoIcons.person_crop_circle_badge_plus,
+                    size: 22,
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+      child: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
             // Hero Section
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.all(32),
+              padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Colors.deepPurple.shade600,
-                    Colors.purple.shade600,
-                  ],
-                ),
+                color: CupertinoColors.systemPurple,
                 borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(24),
-                  bottomRight: Radius.circular(24),
+                  bottomLeft: Radius.circular(16),
+                  bottomRight: Radius.circular(16),
                 ),
               ),
               child: Column(
@@ -204,16 +217,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     children: [
                       Container(
-                        width: 60,
-                        height: 60,
+                        width: 50,
+                        height: 50,
                         decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
-                          borderRadius: BorderRadius.circular(16),
+                          color: CupertinoColors.white.withOpacity(0.2),
+                          borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Icon(
-                          Icons.sports_esports,
-                          color: Colors.white,
-                          size: 32,
+                          CupertinoIcons.game_controller,
+                          color: CupertinoColors.white,
+                          size: 24,
                         ),
                       ),
                       const SizedBox(width: 16),
@@ -222,19 +235,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'GameTopUp Marketplace',
-                              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
+                              'GameTopUp',
+                              style: CupertinoTheme.of(context).textTheme.navLargeTitleTextStyle.copyWith(
+                                    color: CupertinoColors.white,
                                     fontSize: 24,
                                   ),
                             ),
                             const SizedBox(height: 4),
                             Text(
                               'Games, Top Ups & Gift Cards',
-                              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                    color: Colors.white.withOpacity(0.9),
-                                    fontSize: 16,
+                              style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
+                                    color: CupertinoColors.white.withOpacity(0.9),
+                                    fontSize: 14,
                                   ),
                             ),
                           ],
@@ -242,52 +254,49 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 16),
                   Text(
                     'Instant Delivery • Best Prices • 24/7 Support',
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: Colors.white.withOpacity(0.9),
-                          fontSize: 14,
+                    style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
+                          color: CupertinoColors.white.withOpacity(0.9),
+                          fontSize: 13,
                         ),
                   ),
                   const SizedBox(height: 16),
                   Row(
                     children: [
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          foregroundColor: Colors.deepPurple,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 24,
-                            vertical: 12,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
+                      CupertinoButton.filled(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 10,
                         ),
+                        borderRadius: BorderRadius.circular(8),
+                        onPressed: () {},
                         child: const Text(
                           'Browse Games',
                           style: TextStyle(
+                            fontSize: 14,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                       ),
                       const SizedBox(width: 12),
-                      OutlinedButton(
+                      CupertinoButton(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 10,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                        color: CupertinoColors.white.withOpacity(0.2),
                         onPressed: () {},
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          side: const BorderSide(color: Colors.white),
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 24,
-                            vertical: 12,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                        child: const Text(
+                          'Top Ups',
+                          style: TextStyle(
+                            color: CupertinoColors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
-                        child: const Text('Top Ups'),
                       ),
                     ],
                   ),
@@ -303,13 +312,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Text(
                     'Popular Categories',
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
+                    style: CupertinoTheme.of(context).textTheme.navLargeTitleTextStyle.copyWith(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
                         ),
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
-                    height: 120,
+                    height: 100,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: _categories.length,
@@ -322,16 +332,17 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            // Featured Games Section
+            // Featured Products Section
             Padding(
               padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Featured Games',
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
+                    'Featured Products',
+                    style: CupertinoTheme.of(context).textTheme.navLargeTitleTextStyle.copyWith(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
                         ),
                   ),
                   const SizedBox(height: 16),
@@ -340,8 +351,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
                       childAspectRatio: 0.7,
                     ),
                     itemCount: _featuredProducts.length,
@@ -354,34 +365,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        selectedItemColor: Colors.deepPurple,
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.explore),
-            label: 'Browse',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Wishlist',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
       ),
     );
   }
