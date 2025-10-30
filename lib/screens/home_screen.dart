@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:eneba_ecommerce/models/product.dart';
-import 'package:eneba_ecommerce/models/category.dart';
+
 import 'package:eneba_ecommerce/widgets/product_card.dart';
 import 'package:eneba_ecommerce/widgets/category_card.dart';
 import 'package:eneba_ecommerce/services/auth_service.dart';
@@ -29,6 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
       originalPrice: 79.99,
       imageUrl: '',
       category: 'games',
+      discount: 10.0,
+      isFeatured: true,
       platforms: ['PC', 'PS5', 'XBOX'],
     ),
     Product(
@@ -39,6 +41,8 @@ class _HomeScreenState extends State<HomeScreen> {
       originalPrice: 24.99,
       imageUrl: '',
       category: 'topups',
+      discount: 5.0,
+      isFeatured: true,
       platforms: ['PC', 'PS5', 'XBOX'],
     ),
     Product(
@@ -49,6 +53,8 @@ class _HomeScreenState extends State<HomeScreen> {
       originalPrice: 50.00,
       imageUrl: '',
       category: 'giftcards',
+      discount: 4.01,
+      isFeatured: true,
       platforms: ['PC'],
     ),
     Product(
@@ -59,6 +65,8 @@ class _HomeScreenState extends State<HomeScreen> {
       originalPrice: 12.99,
       imageUrl: '',
       category: 'topups',
+      discount: 3.0,
+      isFeatured: true,
       platforms: ['PC'],
     ),
   ];
