@@ -1,0 +1,27 @@
+
+
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # Avoid print calls in production code
+    avoid_print: true
+    
+    # Prefer single quotes where they won't require escaping
+    prefer_single_quotes: true
+    
+    # Prefer using /// for doc comments
+    slash_for_doc_comments: true
+    
+    # Prefer using if null operators
+    prefer_if_null_operators: true
+    
+    # Prefer using ??= operators
+    prefer_null_aware_operators: true
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.gr.dart"
+

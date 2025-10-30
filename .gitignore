@@ -1,0 +1,35 @@
+
+
+
+
+
+# Flutter
+flutter/
+flutter_linux_3.22.1-stable.tar.xz
+
+# Build files
+build/
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+server.log
+flutter_server.log
+
+# Web build (if generated)
+web/
+
+
+
+
