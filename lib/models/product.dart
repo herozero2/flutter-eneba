@@ -11,6 +11,10 @@ class Product {
   final double discount;
   final bool isFeatured;
   final List<String> platforms;
+  final ProductType type;
+  final String? gameName;
+  final String? region;
+  final int? amount; // For gift cards and topups
 
   const Product({
     required this.id,
@@ -23,11 +27,22 @@ class Product {
     required this.discount,
     required this.isFeatured,
     required this.platforms,
+    this.type = ProductType.game,
+    this.gameName,
+    this.region,
+    this.amount,
   });
 
   String get formattedPrice => '\$$price';
   String get formattedOriginalPrice => '\$$originalPrice';
   String get discountPercentage => '${discount.toInt()}%';
+  String get displayTitle => type == ProductType.topup ? '$gameName - $amount Coins' : title;
+}
+
+enum ProductType {
+  game,
+  topup,
+  giftcard,
 }
 
 class Category {
